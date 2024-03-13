@@ -19,20 +19,18 @@ void create_node(){
         rear=temp;
     }
 }
-node *x, *y, *z;
+node *prev, *curr, *new;
 void reversal(){
-    rear=start;
-    x=start;
-    y=x->next;
-    z=y->next;
-    x->next=NULL;
-    while(y!=NULL){
-        y->next=x;
-        x=y;
-        y=z;
-        z=z->next;
+    prev=NULL;
+    curr=start;
+    new=NULL;
+    while(curr!=NULL){
+        new=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=new;
     }
-    start=x;
+    start=prev;
 }
 void display(){
     if(start==NULL)
@@ -48,7 +46,7 @@ void display(){
 int main(){
     int n;
     while(1){
-        printf("enter\n 1. to insert new element\n 2. to print elements\n 3. to exit\n");
+        printf("\nenter\n 1. to insert new element\n 2. to print elements\n 3. to exit\n");
         scanf("%d",&n);
         switch(n){
             case 1: {
